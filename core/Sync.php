@@ -13,7 +13,7 @@ function __construct($accountId,$electionId = NULL)
 {
 	$this->electionId = $electionId;
 	$this->accountId = $accountId;
-	$this->con = new mysqli("localhost","root","kofiessuman","evote") or die(mysqli_errno());
+	$this->con = new mysqli("localhost","root","","evote") or die(mysqli_errno());
 }
 
 function updateLiveServer($url, array $post = NULL, array $options = array())

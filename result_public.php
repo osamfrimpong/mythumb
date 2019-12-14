@@ -23,12 +23,10 @@ if(!empty($elect_id))
 
   if($voterElection !== false)
   {
-  // $voterPortFolios = (strpos($voter_data->portfolios, ",") !== false)?explode(",", $voter_data->portfolios):$voter_data->portfolios;
+  
   $aspiredPortfolios = $aspirantClass->getAspiredPortfoliosId($voter_election_id);
   $finalArray = (is_array($aspiredPortfolios))?$aspiredPortfolios:array(0=>$aspiredPortfolios);
-  //array_push($finalArray, $aspiredPortfolios);
-
-  //print_r($finalArray);
+  $votesCast = ($resultsClass->getVotesCast($voterElection->account_id,$voterElection->id) != false)?$resultsClass->getVotesCast($voterElection->account_id,$voterElection->id)->votes_cast:0;
   
 }
   
@@ -89,7 +87,7 @@ else
  <div class="container">
   <div class="row ml-1 mt-2">
     <div class="col-md-12">
-      <h3 class="font-weight-bold"><?= $voterElection->title; ?> - Result</h3>
+      <h3 class="font-weight-bold"><?= $voterElection->title; ?> - Result Total Votes <?= $votesCast; ?></h3>
       <hr>
     </div>
   </div>
@@ -100,7 +98,24 @@ else
           $portInfo = $controller->getPortfolio($ports->portfolio_id);
           $aspirants = $aspirantClass->getAspirantsByPortfolio($ports->portfolio_id);
           $skippedVotes = $resultsClass->aspirantVotes(-1,$ports->portfolio_id);
-          $votesByPortfolio = $resultsClass->votesByPortfolio($ports->portfolio_id)->portfolio_votes - $skippedVotes->aspirant_votes;?>
+          $votesByPortfolio = $resultsClass->votesByPortfolio($ports->portfolio_id)->portfolio_votes - $skippedVotes->aspirant_votes;
+
+//new additions
+          // $rawPortfolioVotes = $resultsClass->votesByPortfolio($ports->portfolio_id)->portfolio_votes;
+          // $filtered = ($votesCast > 0 && $votesCast > $rawPortfolioVotes) ? $votesCast : $rawPortfolioVotes;
+          // $votesByPortfolio = $filtered - $skippedVotes->aspirant_votes;
+          // $errorMargin = $votesCast - $rawPortfolioVotes;
+
+          //getAspirants Number and check if it's odd or even
+
+          //check if errorMargin can be divisible by aspirants number
+
+          //check if errorMargin is more than aspirants
+
+          
+
+
+          ?>
 <!-- For each portfolio -->
     <div class="row">
       <div class="col-md-12">

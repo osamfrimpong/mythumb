@@ -39,45 +39,46 @@ if(!empty($_SESSION) && array_key_exists('voter_data', $_SESSION) && array_key_e
   {
 
         $votes = $_SESSION['votes'];
+        print_r($votes);
         
-        foreach($votes as $vote)
-        {
-         $cast_vote =  $electionClass->castVote($voter_data->id,$vote['port_id'],$vote['voted_for'],$voter_data->election_id,$voter_data->account_id);
-         if($cast_vote === true)
-         {
+        // foreach($votes as $vote)
+        // {
+        //  $cast_vote =  $electionClass->castVote($voter_data->id,$vote['port_id'],$vote['voted_for'],$voter_data->election_id,$voter_data->account_id);
+        //  if($cast_vote === true)
+        //  {
           
-         }
-         else
-         {
-           $error .= "Could not save";
-           //print_r($cast_vote);
-         }
-        }
+        //  }
+        //  else
+        //  {
+        //    $error .= "Could not save";
+        //    //print_r($cast_vote);
+        //  }
+        // }
 
-        if(empty($error))
-        {
-           //insert into already voted table
-          $addToVoted = $electionClass->addToVoted($voter_data->id,$voter_data->election_id,$voter_data->account_id);
-          if($addToVoted === true){
+        // if(empty($error))
+        // {
+        //    //insert into already voted table
+        //   $addToVoted = $electionClass->addToVoted($voter_data->id,$voter_data->election_id,$voter_data->account_id);
+        //   if($addToVoted === true){
 
-           $output = '<div class="col-md-12">
-            <div class="box box-solid box-success">
-              <div class="box-header">
-                <h3 class="box-title"> Successfully Voted!</h3>
-              </div><!-- /.box-header -->
-              <div class="box-body">
-                Thank You <b>'.$voter_data->voter_name.'</b>, for Voting!<br>
+        //    $output = '<div class="col-md-12">
+        //     <div class="box box-solid box-success">
+        //       <div class="box-header">
+        //         <h3 class="box-title"> Successfully Voted!</h3>
+        //       </div><!-- /.box-header -->
+        //       <div class="box-body">
+        //         Thank You <b>'.$voter_data->voter_name.'</b>, for Voting!<br>
                
-              </div><!-- /.box-body -->
-            </div><!-- /.box -->
-          </div>
-        </div>';
+        //       </div><!-- /.box-body -->
+        //     </div><!-- /.box -->
+        //   </div>
+        // </div>';
 
        
-        header("refresh:2; url=logout.php");
+        // header("refresh:2; url=logout.php");
         
-        }
-        }
+        // }
+        // }
 
        
 

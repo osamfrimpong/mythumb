@@ -201,7 +201,13 @@ $finalArray = (is_array($aspiredPortfolios))?$aspiredPortfolios:array(0=>$aspire
                     $portInfo = $controller->getPortfolio($ports->portfolio_id);
                     $aspirants =(is_array($aspirantClass->getAspirantsByPortfolio($ports->portfolio_id)))? array_chunk($aspirantClass->getAspirantsByPortfolio($ports->portfolio_id), 2):$aspirantClass->getAspirantsByPortfolio($ports->portfolio_id);
                     $skippedVotes = $resultsClass->aspirantVotes(-1,$ports->portfolio_id)->aspirant_votes;
-                    $votesByPortfolio = $resultsClass->votesByPortfolio($ports->portfolio_id)->portfolio_votes - $skippedVotes;?>
+                    $rawPortfolioVotes = $resultsClass->votesByPortfolio($ports->portfolio_id)->portfolio_votes;
+                    $filtered = ($votesCast > 0 && $votesCast > $rawPortfolioVotes) ? $votesCast : $rawPortfolioVotes;
+                    // $votesByPortfolio = $filtered - $skippedVotes;
+                    $votesByPortfolio = $rawPortfolioVotes - $skippedVotes;
+
+
+                    ?>
 
                     <h4 class="btn bg-purple page-header">
                     <?= $portInfo->name; ?>

@@ -449,9 +449,9 @@ if(isset($_POST['submit_vote'])):
    $voted_for = (isset($_POST['voted_for']))?$_POST['voted_for']:-1;
    $arrary_index = $_POST['array_index'];
    $_SESSION['votes'][$arrary_index]=array("port_id"=>$port_id,"voted_for"=>$voted_for);
-   print_r($_POST);
+   // print_r($_POST);
   //  array_push($_SESSION['votes'],array("port_id"=>$port_id,"voted_for"=>$voted_for));
-  // print_r($_SESSION['votes']);
+   // print_r($_SESSION['votes']);
 ?>
   <script type="text/javascript">
 $('#myModal').modal('show');

@@ -5,7 +5,7 @@ class DbConnector
 	private $con;
 	function __construct()
 	{
-		$this->con = new mysqli("localhost","root","kofiessuman","evote") or die(mysql_errno());
+		$this->con = new mysqli("localhost","root","","vote_test") or die(mysql_errno());
 	}
 
 	public function getLink()
